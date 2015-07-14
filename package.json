@@ -1,0 +1,10 @@
+{
+  "name": "nrtv-test",
+  "main": "test.js",
+  "version": "0.0.0",
+  "description": "Runs some code and reports back how it went",
+  "dependencies": {
+    "amdefine": "*",
+    "chai": "*"
+  }
+}
