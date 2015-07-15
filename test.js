@@ -11,15 +11,12 @@ define(["chai"], function(chai) {
       setup = undefined
     }
 
-    function done(before, after) {
-
-      clearTimeout(timer)
-      console.log(before||"  ✓  ", description, after||"")
-    }
-
     if (only && description != only) {
       setup && setup(function() {})
-      return done("  ○  ", "(skipped)")
+
+      console.log(" (?) "+description+" (skipped)")
+
+      return
     }
 
     var expect = chai.expect
@@ -37,7 +34,10 @@ define(["chai"], function(chai) {
 
     var runTest = test.bind(null, chai.expect)
 
-    var runAndDone = runTest.bind(null, done)
+    var runAndDone = runTest.bind(null, function() {
+      clearTimeout(timer)
+      console.log("  ✓  "+description)
+    })
 
     try {
       if (setup) {
@@ -46,7 +46,7 @@ define(["chai"], function(chai) {
         runAndDone()
       }
     } catch (e) {
-      done(" ⚡⚡⚡ ", " ⚡⚡⚡")
+      console.log(" ⚡⚡⚡ "+description+" ⚡⚡⚡")
       throw(e)
     }
   }

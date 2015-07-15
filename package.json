@@ -6,5 +6,8 @@
   "dependencies": {
     "amdefine": "*",
     "chai": "*"
+  },
+  "scripts": {
+    "test": "node test_that_test_fails_right.js"
   }
 }
