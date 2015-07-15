@@ -11,14 +11,15 @@ define(["chai"], function(chai) {
       setup = undefined
     }
 
-    function done(extra) {
+    function done(before, after) {
+
       clearTimeout(timer)
-      console.log("  ✓ ", description, extra ? extra : "")
+      console.log(before||"  ✓  ", description, after||"")
     }
 
     if (only && description != only) {
       setup && setup(function() {})
-      return done(" [ SKIPPED ]")
+      return done("  ○  ", "(skipped)")
     }
 
     var expect = chai.expect
@@ -45,7 +46,7 @@ define(["chai"], function(chai) {
         runAndDone()
       }
     } catch (e) {
-      console.log(" ⚡⚡⚡ "+description + " ⚡⚡⚡")
+      done(" ⚡⚡⚡ ", " ⚡⚡⚡")
       throw(e)
     }
   }
