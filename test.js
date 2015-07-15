@@ -2,6 +2,8 @@ if (typeof define !== 'function') { var define = require('amdefine')(module) }
 
 define(["chai"], function(chai) {
 
+  var only
+
   function test(setup, description, test) {
     if (!test) {
       test = description
@@ -14,7 +16,7 @@ define(["chai"], function(chai) {
       console.log("  ✓ ", description, extra ? extra : "")
     }
 
-    if (test.only && description != test.only) {
+    if (only && description != only) {
       setup && setup(function() {})
       return done(" [ SKIPPED ]")
     }
@@ -46,6 +48,10 @@ define(["chai"], function(chai) {
       console.log(" ⚡⚡⚡ "+description + " ⚡⚡⚡")
       throw(e)
     }
+  }
+
+  test.only = function(description) {
+    only = description
   }
 
   return test
