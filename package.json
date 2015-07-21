@@ -5,7 +5,8 @@
   "description": "Runs some code and reports back how it went",
   "dependencies": {
     "amdefine": "*",
-    "chai": "*"
+    "chai": "*",
+    "sinon-chai": "*"
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"

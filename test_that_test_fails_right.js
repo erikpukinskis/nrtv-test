@@ -1,4 +1,5 @@
 var test = require("./test")
+var sinon = require("sinon")
 
 test(
   "the bone is alone",
@@ -25,7 +26,26 @@ test(
   }
 )
 
-test.only("fail fail fail")
+test.only()
+
+test(
+  "has sinon-chai expectations",
+  function(expect, done) {
+    var me = {
+      stop: function() {},
+    }
+
+    sinon.spy(me, "stop")
+
+    function anticipateFailure() {
+      expect(me.stop).to.have.been.called
+    }
+
+    expect(anticipateFailure).to.throw(Error)
+
+    done()
+  }
+)
 
 test(
   "fail fail fail",
