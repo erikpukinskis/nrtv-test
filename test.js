@@ -26,7 +26,7 @@ function test(setup, description, test) {
       }
       throw new Error(message)
     },
-    1000
+    2000
   )
 
   var runTest = test.bind(null, chai.expect)
