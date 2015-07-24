@@ -24,7 +24,7 @@ function test(setup, description, test) {
       if (setup) {
         message += "\n... or or setup:\n"+setup
       }
-      message += "\n... or maybe it just took too long? We only way 2 seconds for tests to finish."
+      message += "\n... or maybe it just took too long? We only wait 2 seconds for tests to finish."
       throw new Error(message)
     },
     2000
