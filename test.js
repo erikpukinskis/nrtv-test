@@ -31,12 +31,18 @@ function test(setup, description, test) {
     max_test_run
   )
 
-  var runTest = test.bind(null, chai.expect)
-
-  var runAndDone = runTest.bind(null, function() {
+  function done() {
     clearTimeout(timer)
     console.log("  ✓  "+description)
-  })
+  }
+
+  done.failAfter = function(timeout) {
+    max_test_run = timeout
+  }
+
+  var runTest = test.bind(null, chai.expect)
+
+  var runAndDone = runTest.bind(null, done)
 
   try {
     if (setup) {
@@ -52,10 +58,6 @@ function test(setup, description, test) {
 
 test.only = function(description) {
   only = description
-}
-
-test.timeout = function(timeout) {
-  max_test_run = timeout
 }
 
 module.exports = test

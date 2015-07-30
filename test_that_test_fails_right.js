@@ -47,7 +47,28 @@ test(
   }
 )
 
-test.timeout(1)
+
+test(
+  "can delay the timeout",
+  function(expect, done) {
+    done.failAfter(3000)
+
+    var me = {
+      stop: function() {},
+    }
+
+    sinon.spy(me, "stop")
+
+    function anticipateFailure() {
+      expect(me.stop).to.have.been.called
+    }
+
+    expect(anticipateFailure).to.throw(Error)
+
+    done()
+  }
+)
+
 
 test(
   "fail fail fail",
