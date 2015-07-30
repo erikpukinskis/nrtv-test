@@ -47,6 +47,8 @@ test(
   }
 )
 
+test.timeout(1)
+
 test(
   "fail fail fail",
   function(expect, done) {

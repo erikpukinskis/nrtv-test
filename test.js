@@ -2,6 +2,7 @@ var chai = require("chai")
 chai.use(require("sinon-chai"))
 
 var only
+var max_test_run = 2000
 
 function test(setup, description, test) {
   if (!test) {
@@ -27,7 +28,7 @@ function test(setup, description, test) {
       message += "\n... or maybe it just took too long? We only wait 2 seconds for tests to finish."
       throw new Error(message)
     },
-    2000
+    max_test_run
   )
 
   var runTest = test.bind(null, chai.expect)
@@ -51,6 +52,10 @@ function test(setup, description, test) {
 
 test.only = function(description) {
   only = description
+}
+
+test.timeout = function(timeout) {
+  max_test_run = timeout
 }
 
 module.exports = test
