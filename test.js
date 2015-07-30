@@ -19,17 +19,22 @@ function test(setup, description, test) {
     return
   }
 
-  var timer = setTimeout(
-    function() {
-      var message = "Got stuck in test \""+description+"\":\n"+runTest
-      if (setup) {
-        message += "\n... or or setup:\n"+setup
-      }
-      message += "\n... or maybe it just took too long? We only wait 2 seconds for tests to finish."
-      throw new Error(message)
-    },
-    max_test_run
-  )
+  var timer
+
+  function setTimer() {
+    timer = setTimeout(
+      function() {
+        var message = "Got stuck in test \""+description+"\":\n"+runTest
+        if (setup) {
+          message += "\n... or or setup:\n"+setup
+        }
+        message += "\n... or maybe it just took too long? We only wait 2 seconds for tests to finish."
+        throw new Error(message)
+      },
+      max_test_run
+    )
+  }
+
 
   function done() {
     clearTimeout(timer)
@@ -37,7 +42,9 @@ function test(setup, description, test) {
   }
 
   done.failAfter = function(timeout) {
+    clearTimeout(timer)
     max_test_run = timeout
+    setTimer()
   }
 
   var runTest = test.bind(null, chai.expect)
