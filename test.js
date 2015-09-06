@@ -28,7 +28,7 @@ function test(setup, description, test) {
         if (setup) {
           message += "\n... or or setup:\n"+setup
         }
-        message += "\n... or maybe it just took too long? We waited "+(max_test_run/1000)+" seconds for tests to finish."
+        message += "\n... or maybe it just took too long? We waited "+(max_test_run/1000)+" seconds for tests to finish. Do done.failAfter(10000) or something if you want to wait longer."
         throw new Error(message)
       },
       max_test_run
