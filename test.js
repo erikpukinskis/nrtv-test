@@ -51,6 +51,8 @@ function test(setup, description, test) {
 
   var runAndDone = runTest.bind(null, done)
 
+  setTimer()
+
   try {
     if (setup) {
       setup(runAndDone)
