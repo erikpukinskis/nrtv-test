@@ -1,6 +1,7 @@
 var chai = require("chai")
-chai.use(require("sinon-chai"))
+var library = require("nrtv-library")(require)
 
+chai.use(require("sinon-chai"))
 var only
 var max_test_run = 2000
 
@@ -35,7 +36,6 @@ function test(setup, description, test) {
     )
   }
 
-
   function done() {
     clearTimeout(timer)
     console.log("  ✓  "+description)
@@ -67,6 +67,29 @@ function test(setup, description, test) {
 
 test.only = function(description) {
   only = description
+}
+
+test.using = function(description, dependencies, runTest) {
+
+  var argumentsAccepted = runTest.length
+
+  var dependenciesProvided = dependencies.length
+
+  if (argumentsAccepted != dependenciesProvided+2) {
+    throw new Error("Your test function "+runTest+" should take "+(dependenciesProvided+2)+" arguments: expect, done, and one argument for each of the "+dependenciesProvided+" dependencies provided ("+dependencies+")")
+  }
+
+  library.using(dependencies, function() {
+
+    var deps = Array.prototype.slice.call(arguments)
+
+    test(description, function(expect, done) {
+
+      var args = [expect, done].concat(deps)
+
+      runTest.apply(null, args)
+    })
+  })
 }
 
 module.exports = test

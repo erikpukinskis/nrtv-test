@@ -6,7 +6,8 @@
   "dependencies": {
     "amdefine": "*",
     "chai": "*",
-    "sinon-chai": "*"
+    "sinon-chai": "*",
+    "nrtv-library": "*"
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"
