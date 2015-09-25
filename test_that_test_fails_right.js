@@ -72,7 +72,6 @@ test(
 
 test(
   "run test with dependencies",
-
   function(expect, done) {
 
     library.define(
