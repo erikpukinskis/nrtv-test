@@ -1,11 +1,20 @@
 var chai = require("chai")
-var library = require("nrtv-library")(require)
 
 chai.use(require("sinon-chai"))
 var only
 var max_test_run = 2000
 
 function test(description, runTest) {
+  if (description.resolve) {
+    var newRequire = description
+
+    var newTest = test.bind(this)
+
+    newTest.using = using.bind(this, require("nrtv-library")(newRequire))
+
+    return newTest
+  }
+
   if (only && description != only) {
 
     console.log(" (?) "+description+" (skipped)")
@@ -51,7 +60,7 @@ test.only = function(description) {
   only = description
 }
 
-test.using = function(description, dependencies, runTest) {
+function using(library, description, dependencies, runTest) {
 
   var argumentsAccepted = runTest.length
 
@@ -73,5 +82,7 @@ test.using = function(description, dependencies, runTest) {
     })
   })
 }
+
+test.using = using.bind(test, require("nrtv-library")(require))
 
 module.exports = test
