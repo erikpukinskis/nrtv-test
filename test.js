@@ -62,6 +62,10 @@ test.only = function(description) {
 
 function using(library, description, dependencies, runTest) {
 
+  if (!Array.isArray(dependencies)) {
+    throw new Error("test.using takes a test description and then an array of dependencies.")
+  }
+
   var argumentsAccepted = runTest.length
 
   var dependenciesProvided = dependencies.length
