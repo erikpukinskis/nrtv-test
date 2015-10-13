@@ -8,9 +8,12 @@ function test(description, runTest) {
   if (description.resolve) {
     var newRequire = description
 
+    var newLibrary = require("nrtv-library")(newRequire)
+
     var newTest = test.bind(this)
     newTest.only = test.only
-    newTest.using = using.bind(this, require("nrtv-library")(newRequire))
+    newTest.using = using.bind(this, newLibrary)
+    newTest.library = newLibrary
 
     return newTest
   }
