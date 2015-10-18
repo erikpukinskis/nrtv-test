@@ -43,6 +43,10 @@ function test(description, runTest) {
     console.log("  ✓  "+description)
   }
 
+  done.ish = function(message) {
+    console.log("  ✓  "+message)
+  }
+
   done.failAfter = function(timeout) {
     clearTimeout(timer)
     max_test_run = timeout
