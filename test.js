@@ -58,9 +58,13 @@ function test(description, runTest) {
   try {
     runTest(chai.expect, done)
   } catch (e) {
-    console.log(" ⚡⚡⚡ "+description+" ⚡⚡⚡")
+    console.log(lightningize(message))
     throw(e)
   }
+}
+
+function lightningize(message) {
+  return " ⚡⚡⚡ "+message+" ⚡⚡⚡"
 }
 
 test.only = function(description) {
