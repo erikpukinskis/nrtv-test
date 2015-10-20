@@ -1,7 +1,7 @@
 {
   "name": "nrtv-test",
   "main": "test.js",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "description": "Runs some code and reports back how it went",
   "dependencies": {
     "amdefine": "*",
