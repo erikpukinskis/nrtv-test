@@ -1,4 +1,5 @@
 var chai = require("chai")
+var fs = require("fs")
 
 chai.use(require("sinon-chai"))
 var only
@@ -58,13 +59,42 @@ function test(description, runTest) {
   try {
     runTest(chai.expect, done)
   } catch (e) {
-    console.log(lightningize(message))
-    throw(e)
+    var stack = e.stack.split("\n")
+    console.log()
+    console.log(lightningize(description))
+    console.log()
+    console.log(lightningize(stack[0]))
+    console.log()
+    dumpSource(stack)
+    console.log()
+    console.log(stack.slice(1).join("\n"))
+    process.exit()
   }
 }
 
-function lightningize(message) {
-  return " ⚡⚡⚡ "+message+" ⚡⚡⚡"
+function dumpSource(stack) {
+  try {
+    var parts = stack[1].match(/(\/[^:]*):([0-9]*):/)
+    var path = parts[1]
+    var lineNumber = parseInt(parts[2])
+
+    var lines = fs.readFileSync(path, "utf8").split("\n")
+
+    var sample = lines.slice(lineNumber-3, lineNumber+2)
+
+    for(var i=0; i<sample.length; i++) {
+      var line = sample[i]
+      if (typeof line == "undefined") {
+        return
+      }
+      var number = lineNumber-2 + i
+      var separator = i==2 ? " >" : "| "
+
+      var paddedNumber = ("      " + number).slice(-4)
+
+      console.log(paddedNumber+separator+line)
+    }
+  } catch(e) {}
 }
 
 test.only = function(description) {
@@ -96,6 +126,10 @@ function using(library, description, dependencies, runTest) {
       runTest.apply(null, args)
     })
   })
+}
+
+function lightningize(message) {
+  return " ⚡⚡⚡ "+message+" ⚡⚡⚡"
 }
 
 test.using = using.bind(test, require("nrtv-library")(require))
