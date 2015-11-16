@@ -15,6 +15,7 @@ function test(description, runTest) {
     newTest.only = test.only
     newTest.using = using.bind(this, newLibrary)
     newTest.library = newLibrary
+    newTest.failAfter = test.failAfter
 
     return newTest
   }
