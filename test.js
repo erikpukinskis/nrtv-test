@@ -101,6 +101,10 @@ test.only = function(description) {
   only = description
 }
 
+test.failAfter = function(timeout) {
+  max_test_run = timeout
+}
+
 function using(library, description, dependencies, runTest) {
 
   if (!Array.isArray(dependencies)) {
