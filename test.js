@@ -28,10 +28,14 @@ function test(description, runTest) {
   }
 
   var timer
+  var dying = false
 
   function setTimer() {
     timer = setTimeout(
       function() {
+        if (dying) { return }
+        else { dying = true }
+
         var message = "Got stuck in test \""+description+"\":\n"+runTest
         message += "\n... or maybe it just took too long? We waited "+(max_test_run/1000)+" seconds for tests to finish. Do done.failAfter(10000) or something if you want to wait longer."
         throw new Error(message)
