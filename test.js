@@ -4,6 +4,7 @@ var fs = require("fs")
 chai.use(require("sinon-chai"))
 var only
 var max_test_run = 2000
+var dying = false
 
 function test(description, runTest) {
   if (description.resolve) {
@@ -28,7 +29,6 @@ function test(description, runTest) {
   }
 
   var timer
-  var dying = false
 
   function setTimer() {
     timer = setTimeout(
