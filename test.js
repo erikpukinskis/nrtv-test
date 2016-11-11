@@ -31,6 +31,9 @@ function test(description, runTest) {
   var timer
 
   function setTimer() {
+    if (timer) {
+      clearTimeout(timer)
+    }
     timer = setTimeout(
       function() {
         if (dying) { return }
