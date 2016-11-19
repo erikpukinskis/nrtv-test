@@ -6,6 +6,23 @@ var only
 var max_test_run = 2000
 var dying = false
 
+console.outdent = console.log
+console.log = function() {
+  var args = Array.prototype.slice.call(arguments)
+
+  var padded = args.map(toString).join(" ").split("\n").map(pad).join("\n")
+
+  console.outdent(padded)
+
+  function toString(x) {
+    return x.toString()
+  }
+
+  function pad(line) {
+    return "  :  "+line
+  }
+}
+
 function test(description, runTest) {
   if (description.resolve) {
     var newRequire = description
@@ -23,7 +40,7 @@ function test(description, runTest) {
 
   if (only && description != only) {
 
-    console.log(" (?) "+description+" (skipped)")
+    console.outdent(" (?) "+description+" (skipped)")
 
     return
   }
@@ -49,11 +66,11 @@ function test(description, runTest) {
 
   function done() {
     clearTimeout(timer)
-    console.log("  ✓  "+description)
+    console.outdent("  ✓  "+description)
   }
 
   done.ish = function(message) {
-    console.log("  ✓  "+message)
+    console.outdent("  ✓  "+message)
   }
 
   done.failAfter = function(timeout) {
@@ -68,14 +85,14 @@ function test(description, runTest) {
     runTest(chai.expect, done)
   } catch (e) {
     var stack = e.stack.split("\n")
-    console.log()
-    console.log(lightningize(description))
-    console.log()
+    console.outdent()
+    console.outdent(lightningize(description))
+    console.outdent()
     dumpSource(stack)
-    console.log()
-    console.log(lightningize(stack[0]))
-    console.log()
-    console.log(stack.slice(1).join("\n"))
+    console.outdent()
+    console.outdent(lightningize(stack[0]))
+    console.outdent()
+    console.outdent(stack.slice(1).join("\n"))
     process.exit()
   }
 }
@@ -100,7 +117,7 @@ function dumpSource(stack) {
 
       var paddedNumber = ("      " + number).slice(-4)
 
-      console.log(paddedNumber+separator+line)
+      console.outdent(paddedNumber+separator+line)
     }
   } catch(e) {}
 }
