@@ -19,7 +19,7 @@ console.log = function() {
   }
 
   function pad(line) {
-    return "  :  "+line
+    return "  ⋮  "+line
   }
 }
 
