@@ -12,5 +12,9 @@
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikpukinskis/run-test.git"
   }
 }
