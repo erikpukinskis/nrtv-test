@@ -1,6 +1,6 @@
 {
-  "name": "nrtv-test",
-  "main": "test.js",
+  "name": "run-test",
+  "main": "run-test.js",
   "version": "0.30.0",
   "description": "Runs some code and reports back how it went",
   "dependencies": {
