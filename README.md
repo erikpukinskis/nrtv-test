@@ -1,36 +1,36 @@
 RunTest lets you define tests along with their dependencies.
 
-  var runTest = require("run-test")(require)
+    var runTest = require("run-test")(require)
 
-  runTest(
-    "a button tells us who's good",
-    ["web-site", "browser-bridge", "web-element", "browser-task"],
-    function(expect, done, WebSite, BrowserBridge, element, browserTask) {
-      var site = new WebSite()
-      var bridge = new BrowserBridge()
+    runTest(
+      "a button tells us who's good",
+      ["web-site", "browser-bridge", "web-element", "browser-task"],
+      function(expect, done, WebSite, BrowserBridge, element, browserTask) {
+        var site = new WebSite()
+        var bridge = new BrowserBridge()
 
-      var sayWhosGood = bridge.defineFunction(
-        function sayWhosGood() {
-          document.write("Prince")
+        var sayWhosGood = bridge.defineFunction(
+          function sayWhosGood() {
+            document.write("Prince")
+          }
+        )
+
+        var button = element("button", "Who's good?", {onclick: sayWhosGood.evalable()})
+
+        site.addRoute("get", "/", bridge.sendPage(button))
+
+        site.live()
+
+        var browser = browserTask(
+          site.url(), function() {
+          browser.pressButton(checkWho)
+        })
+
+        function checkWho() {
+          browser.assertText("body", /Prince/, browser.done, done)
         }
-      )
-
-      var button = element("button", "Who's good?", {onclick: sayWhosGood.evalable()})
-
-      site.addRoute("get", "/", bridge.sendPage(button))
-
-      site.live()
-
-      var browser = browserTask(
-        site.url(), function() {
-        browser.pressButton(checkWho)
-      })
-
-      function checkWho() {
-        browser.assertText("body", /Prince/, browser.done, done)
       }
-    }
-  )
+    )
 
 
 # Why
