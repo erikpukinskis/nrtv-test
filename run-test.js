@@ -34,6 +34,7 @@ function runTest() {
       var newLibrary = require("nrtv-library")(newRequire)
 
       var newTest = runTest.bind(newLibrary)
+      newTest.define = newLibrary.define.bind(newLibrary)
       newTest.only = runTest.only
       newTest.failAfter = runTest.failAfter
 
