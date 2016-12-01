@@ -8,7 +8,7 @@
     "chai": "*",
     "sinon": "*",
     "sinon-chai": "*",
-    "nrtv-library": "*"
+    "module-library": "*"
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"

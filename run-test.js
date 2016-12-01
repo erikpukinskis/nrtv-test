@@ -31,7 +31,7 @@ function runTest() {
     if (arg && arg.resolve) {
       var newRequire = arg
 
-      var newLibrary = require("nrtv-library")(newRequire)
+      var newLibrary = require("module-library")(newRequire)
 
       var newTest = runTest.bind(newLibrary)
       newTest.define = newLibrary.define.bind(newLibrary)

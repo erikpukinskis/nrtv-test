@@ -1,8 +1,8 @@
-var test = require("./run-test")
+var runTest = require("./")
 var sinon = require("sinon")
-var library = require("nrtv-library")(require)
+var library = require("module-library")(require)
 
-test(
+runTest(
   "the bone is alone",
   function(expect, done) {
     expect(true)
@@ -10,9 +10,9 @@ test(
   }
 )
 
-test.only("nothing works")
+runTest.only("nothing works")
 
-test(
+runTest(
   "the impossible is possible",
   function(expect, done) {
     expect(undefined).to.not.be.undefined
@@ -20,16 +20,16 @@ test(
   }
 )
 
-test(
+runTest(
   "nothing works",
   function(expect, done) {
     done()
   }
 )
 
-test.only()
+runTest.only()
 
-test(
+runTest(
   "has sinon-chai expectations",
   function(expect, done) {
     var me = {
@@ -49,7 +49,7 @@ test(
 )
 
 
-test(
+runTest(
   "can delay the timeout",
   function(expect, done) {
     done.failAfter(3000)
@@ -70,7 +70,7 @@ test(
   }
 )
 
-test(
+runTest(
   "run test with dependencies",
   function(expect, done) {
 
@@ -81,7 +81,7 @@ test(
       }
     )
 
-    test(require)(
+    runTest(require)(
       "rabbit is Bugs",
       ["rabbit", "chai"],
       function(expect, innerDone, rabbit, chai) {
@@ -95,7 +95,7 @@ test(
 )
 
 
-test(
+runTest(
   "fail fail fail",
   function(expect, done) {
     console.log("\n\nHello human,\n\nIf you see \"fail fail fail\" below, do not be alarmed. We're just testing that errors work.\n\nLove, computer\n\n")
