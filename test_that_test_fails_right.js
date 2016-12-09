@@ -98,7 +98,7 @@ runTest(
 runTest(
   "fail fail fail",
   function(expect, done) {
-    console.log("\n\nHello human,\n\nIf you see \"fail fail fail\" below, do not be alarmed. We're just testing that errors work.\n\nLove, computer\n\n")
+    console.log("\n\nHello human,\n\nIf you see \"fail fail fail\" below, do not be alarmed. We're just testing\nthat errors work. If you see it above, be alarmed.\n\nLove, computer\n\n")
 
     throw new Error("What am I doing? I don't know what I'm doing. I'm doing the best that I can. I know that's all I can ask of myself. Is that good enough? Is my work doing any good? Is anybody paying attention? Is it hopeless to try and change things? The African guy is a sign, right? Because if he isn't than nothing in this world makes any sense to me; I'm fucked. Maybe I should quit. Don't quit. Maybe I should just fucking quit. Don't fucking quit. Just, I don't know what the fuck I'm supposed to do anymore. Fucker. Fuck. Shit.")
   }

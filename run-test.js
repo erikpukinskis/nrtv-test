@@ -37,6 +37,7 @@ function runTest() {
       newTest.define = newLibrary.define.bind(newLibrary)
       newTest.only = runTest.only
       newTest.failAfter = runTest.failAfter
+      newTest.library = newLibrary
 
       return newTest
     } else if (typeof arg == "string") {
@@ -145,8 +146,6 @@ runTest.only = function(description) {
 runTest.failAfter = function(timeout) {
   max_test_run = timeout
 }
-
-runTest.library = library
 
 function using(library, description, dependencies, testScript) {
 
