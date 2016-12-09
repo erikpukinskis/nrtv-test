@@ -146,6 +146,8 @@ runTest.failAfter = function(timeout) {
   max_test_run = timeout
 }
 
+runTest.library = library
+
 function using(library, description, dependencies, testScript) {
 
   var argumentsAccepted = testScript.length
