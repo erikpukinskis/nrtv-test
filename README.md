@@ -1,4 +1,4 @@
-RunTest lets you define tests along with their dependencies.
+**RunTest** lets you define tests in the same file where you define their dependencies:
 
 ```javascript
 var runTest = require("run-test")(require)
@@ -34,10 +34,14 @@ runTest(
 )
 ```
 
-# Why
+## Why
 
 This makes it possible to hot reload modules when they change and re-run just the individual tests that depend on them.
 
 I haven't written that test runner yet, but I wanted to set this standard so that the tests don't have to be rewritten when we have a global autonomous test runner up.
 
 And in general, we try always to write code that describes its prerequisites in software.
+
+## Random thoughts on testing
+
+Wondering whether you should write a test? Ask yourself, if this stopped working, and none of our collaborators noticed, would it matter? If so, write the test.
