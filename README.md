@@ -1,4 +1,4 @@
-**run-test** lets you define tests in the same file where you define their dependencies:
+**Run-test** lets you define tests in the same file where you define their dependencies:
 
 ```javascript
 var runTest = require("run-test")(require)

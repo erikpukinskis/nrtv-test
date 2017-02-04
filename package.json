@@ -2,7 +2,7 @@
   "name": "run-test",
   "main": "run-test.js",
   "version": "0.37.0",
-  "description": "Runs some code and reports back how it went",
+  "description": "Define tests with dependencies",
   "dependencies": {
     "amdefine": "*",
     "chai": "*",
@@ -18,3 +18,6 @@
     "url": "https://github.com/erikpukinskis/run-test.git"
   }
 }
+
+
+Use WebSockets exactly the same way in Node and in the browser
