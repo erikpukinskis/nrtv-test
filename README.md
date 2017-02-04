@@ -46,6 +46,8 @@ runTest("currying", function(expect, done) {
 
 runTest("salading", function(expect, done) {
   throw new Error("This test will never run")
+  expect("salad").to.contain("sal")
+  done()
 })
 ```
 
