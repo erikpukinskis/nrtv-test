@@ -34,6 +34,25 @@ runTest(
 )
 ```
 
+## One test at a time
+
+```javascript
+runTest.only("currying")
+
+runTest("currying", function(expect, done) {
+  expect("curry").to.contain("cur")
+  done()
+})
+
+runTest("salading", function(expect, done) {
+  throw new Error("This test will never run")
+  expect("salad").to.contain("sal")
+  done()
+})
+```
+
+You have to do this at the top of the file, because runTest is eager: it will just start running tests as soon as you define them.
+
 ## Why
 
 This makes it possible to hot reload modules when they change and re-run just the individual tests that depend on them.
