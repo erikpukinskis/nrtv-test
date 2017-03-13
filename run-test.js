@@ -51,6 +51,11 @@ function runTest() {
     }
   }
 
+  if (!testScript) {
+    console.log(" ⚡ MISSING ⚡ runTest: "+description+"")
+    return
+  }
+
   if (dependencies) {
     return using(this, description, dependencies, testScript)
   }      
