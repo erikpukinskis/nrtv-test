@@ -52,7 +52,7 @@ function runTest() {
   }
 
   if (!testScript) {
-    console.log(" ⚡ MISSING ⚡ runTest: "+description+"")
+    console.outdent(" ⚡⚡⚡ MISSING "+description+" test")
     return
   }
 
