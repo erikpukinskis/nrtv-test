@@ -1,7 +1,7 @@
 {
   "name": "run-test",
   "main": "run-test.js",
-  "version": "0.39.0",
+  "version": "0.40.0",
   "description": "Define tests with dependencies",
   "dependencies": {
     "amdefine": "*",
