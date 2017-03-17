@@ -5,10 +5,8 @@
   "description": "Define tests with dependencies",
   "dependencies": {
     "amdefine": "*",
-    "chai": "~1.9",
-    "sinon": "~1",
-    "sinon-chai": "~2.7",
-    "module-library": "*"
+    "chai": "^1.9",
+    "sinon": "*"
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"
