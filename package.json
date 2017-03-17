@@ -6,8 +6,8 @@
   "dependencies": {
     "amdefine": "*",
     "chai": "*",
-    "sinon": "^1.10.3",
-    "sinon-chai": "*",
+    "sinon": "<2",
+    "sinon-chai": "<2.8",
     "module-library": "*"
   },
   "scripts": {
