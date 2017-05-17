@@ -53,6 +53,24 @@ runTest("salading", function(expect, done) {
 
 You have to do this at the top of the file, because runTest is eager: it will just start running tests as soon as you define them.
 
+## Partly passing
+
+```javascript
+runTest(
+  "adding",
+  function(expect, done) {
+    var a = 2 + 4
+    expect(a).to.equal(6)
+    done.ish("add two numbers")
+
+    var b = a + 5
+    expect(b).to.equal(11)
+    done.ish("adding to a variable")
+
+    done()
+  })
+```
+
 ## Why
 
 This makes it possible to hot reload modules when they change and re-run just the individual tests that depend on them.
