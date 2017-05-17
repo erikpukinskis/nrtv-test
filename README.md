@@ -55,6 +55,8 @@ You have to do this at the top of the file, because runTest is eager: it will ju
 
 ## Partly passing
 
+Note that a test has partially passed to make it easier to figure out where complicated tests when wrong:
+
 ```javascript
 runTest(
   "adding",
