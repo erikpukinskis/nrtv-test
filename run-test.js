@@ -108,7 +108,7 @@ function runTest() {
   } catch (e) {
     var stack = e.stack.split("\n")
     console.outdent()
-    console.outdent(lightningize(description))
+    console.outdent(lightningize("Error in test: "+description))
     console.outdent()
     dumpSource(stack)
     console.outdent()
@@ -150,6 +150,10 @@ runTest.only = function(description) {
 
 runTest.failAfter = function(timeout) {
   max_test_run = timeout
+}
+
+runTest.define = function() {
+  throw new Error("You need to pass require to runTest if you want to use runTest.define: var runTest = require(\"run-test\")(require)")
 }
 
 function using(library, description, dependencies, testScript) {

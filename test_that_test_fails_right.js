@@ -1,6 +1,5 @@
-var runTest = require("./")
+var runTest = require("./")(require)
 var sinon = require("sinon")
-var library = require("module-library")(require)
 
 runTest(
   "the bone is alone",
@@ -74,7 +73,7 @@ runTest(
   "run test with dependencies",
   function(expect, done) {
 
-    library.define(
+    runTest.define(
       "rabbit",
       function() {
         return "Bugs"

@@ -6,7 +6,11 @@
   "dependencies": {
     "amdefine": "*",
     "sinon": "<2",
-    "sinon-chai": "*"
+    "sinon-chai": "<2",
+    "module-library": "*"
+  },
+  "devDependencies": {
+    "chai": "*"
   },
   "scripts": {
     "test": "node test_that_test_fails_right.js"
