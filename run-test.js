@@ -36,6 +36,7 @@ function runTest() {
       var newTest = runTest.bind(newLibrary)
       newTest.define = newLibrary.define.bind(newLibrary)
       newTest.only = runTest.only
+      newTest.skip = runTest.skip
       newTest.failAfter = runTest.failAfter
       newTest.library = newLibrary
 
@@ -146,6 +147,10 @@ function dumpSource(stack) {
 
 runTest.only = function(description) {
   only = description
+}
+
+runTest.skip = function(description) {
+  console.outdent(" (?) "+description+" (skipped)")
 }
 
 runTest.failAfter = function(timeout) {
