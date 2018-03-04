@@ -1,4 +1,7 @@
 var chai = require("chai")
+
+chai.should();
+
 var fs = require("fs")
 
 chai.use(require("sinon-chai"))

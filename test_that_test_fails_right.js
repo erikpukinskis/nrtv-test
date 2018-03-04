@@ -30,7 +30,8 @@ runTest.only()
 
 runTest(
   "has sinon-chai expectations",
-  function(expect, done) {
+  ["chai"],
+  function(expect, done, chai) {
     var me = {
       stop: function() {},
     }
@@ -38,10 +39,10 @@ runTest(
     sinon.spy(me, "stop")
 
     function anticipateFailure() {
-      expect(me.stop).to.have.been.called
+      me.stop.should.have.been.called
     }
 
-    expect(anticipateFailure).to.throw(Error)
+    expect(anticipateFailure).to.throw(chai.AssertionError)
 
     done()
   }
