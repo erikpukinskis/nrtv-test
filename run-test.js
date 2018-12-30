@@ -96,7 +96,7 @@ function runTest() {
   }
 
   done.ish = function(message) {
-    console.outdent("  ... ✓  "+message)
+    console.outdent("  ...  "+message)
   }
 
   done.failAfter = function(timeout) {
