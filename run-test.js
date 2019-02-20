@@ -26,7 +26,8 @@ console.log = function() {
   }
 }
 
-  
+var runningCount = 0
+
 function runTest() {
   for(var i=0; i<arguments.length; i++) {
     var arg = arguments[i]
@@ -90,9 +91,18 @@ function runTest() {
     )
   }
 
+  var checkingDone
+
   function done() {
+    runningCount--
     clearTimeout(timer)
     console.outdent("  ✓  "+description)
+    clearTimeout(checkingDone)
+    checkingDone = setTimeout(function() {
+      if (runningCount == 0) {
+        console.log("\n\n===========\nAll is well\n===========\n\n")
+      }
+    },1)
   }
 
   done.ish = function(message) {
@@ -108,8 +118,10 @@ function runTest() {
   setTimer()
 
   try {
+    runningCount++
     testScript(chai.expect, done)
   } catch (e) {
+    runningCount--
     var stack = e.stack.split("\n")
     console.outdent()
     console.outdent(lightningize("Error in test: "+description))
