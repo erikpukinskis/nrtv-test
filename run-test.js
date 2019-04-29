@@ -26,6 +26,7 @@ console.log = function() {
   }
 }
 
+var checkingDone
 var runningCount = 0
 
 function runTest() {
@@ -91,13 +92,13 @@ function runTest() {
     )
   }
 
-  var checkingDone
-
   function done() {
     runningCount--
     clearTimeout(timer)
     console.outdent("  ✓  "+description)
-    clearTimeout(checkingDone)
+    if (checkingDone) {
+      clearTimeout(checkingDone)
+    }
     checkingDone = setTimeout(function() {
       if (runningCount == 0) {
         console.log("\n\n===========\nAll is well\n===========\n\n")
