@@ -63,6 +63,10 @@ function runTest() {
   }
 
   if (dependencies) {
+    if (!this.__isNrtvLibrary) {
+      throw new Error("If you would like to run a test with dependencies, you need to pass require to the run-test singleton:\n\n        var runTest = require(\"run-test\")(require)\n\n        runTest(\n          \"things work\",\n          [\"lib1\", \"lib2\"],\n          function(expect, done, singleton1, singleton2) {\n            ... })\n")
+    }
+
     return using(this, description, dependencies, testScript)
   }      
 
