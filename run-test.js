@@ -26,7 +26,6 @@ console.log = function() {
   }
 }
 
-var checkingDone
 var runningCount = 0
 
 function runTest() {
@@ -88,13 +87,17 @@ function runTest() {
         if (dying) { return }
         else { dying = true }
 
-        var message = "Got stuck in test \""+description+"\":\n"+testScript
-        message += "\n... or maybe it just took too long? We waited "+(max_test_run/1000)+" seconds for tests to finish. Do done.failAfter(10000) or something if you want to wait longer."
+        console.log("\n⚡⚡⚡ STUCK in \""+description+"\" ⚡⚡⚡\n")
+
+        message = "Maybe it just took too long? We waited "+(max_test_run/1000)+" seconds for tests to finish. Do done.failAfter(10000) or something if you want to wait longer."
+
         throw new Error(message)
       },
       max_test_run
     )
   }
+
+  var checkingDone
 
   function done() {
     runningCount--
