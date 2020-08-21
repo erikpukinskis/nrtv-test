@@ -18,7 +18,7 @@ console.log = function() {
   console.outdent(padded)
 
   function toString(x) {
-    return x.toString()
+    return x === undefined ? "undefined" : x.toString()
   }
 
   function pad(line) {
@@ -27,6 +27,7 @@ console.log = function() {
 }
 
 var runningCount = 0
+var checkingDone
 
 function runTest() {
   for(var i=0; i<arguments.length; i++) {
@@ -97,15 +98,12 @@ function runTest() {
     )
   }
 
-  var checkingDone
 
   function done() {
     runningCount--
     clearTimeout(timer)
     console.outdent("  ✓  "+description)
-    if (checkingDone) {
-      clearTimeout(checkingDone)
-    }
+    clearTimeout(checkingDone)
     checkingDone = setTimeout(function() {
       if (runningCount == 0) {
         console.log("\n\n===========\nAll is well\n===========\n\n")
