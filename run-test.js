@@ -166,7 +166,10 @@ function dumpSource(stack) {
   } catch(e) {}
 }
 
-runTest.only = function(description) {
+runTest.only = function(description, extra) {
+  if (extra) {
+    throw new Error("runTest.only just takes the description of the test to focus on. You still have to define the test separately in its own runTest call")
+  }
   only = description
 }
 
